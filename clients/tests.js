@@ -1,16 +1,22 @@
 const test = require('ava')
 const createInitialState = require('../createInitialState')
-const reducers = require('./reducers')
+const createClient = require('./reducers/createClient')
+const deleteClient = require('./reducers/deleteClient')
+
+const uuid1 = 'uuid1'
+const name = 'Brice Colucci'
 
 test('create client', t => {
   const state1 = createInitialState()
-  const state2 = reducers.createClient(state1, { UUIDGenerator: () => 'uuid1', name: 'Brice Colucci' })
-  t.deepEqual(state2.clients.first().toJS(), { uuid: 'uuid1', name: 'Brice Colucci', accountsUUID: [] })
+  const state2 = createClient(state1, { UUIDGenerator: () => uuid1, name })
+  t.deepEqual(state2.clients.first().toJS(), { uuid: uuid1, name, accountsUUID: [] })
 })
 
 test('delete client', t => {
-  //TODO
-  t.pass()
+  const state1 = createInitialState()
+  const state2 = createClient(state1, { UUIDGenerator: () => uuid1, name })
+  const state3 = deleteClient(state2, { uuid: uuid1 })
+  t.deepEqual(state3.clients.toJS(), [])
 })
 
 test('add account', t => {
