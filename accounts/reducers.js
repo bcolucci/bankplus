@@ -1,18 +1,12 @@
-const uuid = require('uuid/v1')
 const Account = require('./model')
 const ActionResult = require('../ActionResult')
 
 const findByUUID = uuid => (account) => account.uuid === uuid
 const noAccountFoundWithUUID = uuid => `No Account found with UUID '${uuid}'.`
 
-exports.createAccount = (state, { clientUUID }) => {
-  // for now, one account per client
-  if (state.accounts.find((account) => account.clientUUID === clientUUID)) {
-    const error = `Account with client UUID '${clientUUID}' already exists.`
-    return state.set('lastActionResult', new ActionResult({ error }))
-  }
+module.exports.createAccount = (state, { UUIDGenerator, clientUUID }) => {
   const account = new Account({
-    uuid: uuid(),
+    uuid: UUIDGenerator(),
     balance: 0,
     clientUUID
   })
@@ -21,7 +15,7 @@ exports.createAccount = (state, { clientUUID }) => {
     .set('lastActionResult', new ActionResult({ result: { account } }))
 }
 
-exports.deleteAccount = (state, { uuid }) => {
+module.exports.deleteAccount = (state, { uuid }) => {
   const key = state.accounts.findKey(findByUUID(uuid))
   if (! key) {
     return state.set('lastActionResult', new ActionResult({ error: noAccountFoundWithUUID(uuid) }))
@@ -31,7 +25,7 @@ exports.deleteAccount = (state, { uuid }) => {
     .set('lastActionResult', new ActionResult({ result: { key, uuid } }))
 }
 
-exports.creditAccount = (state, { uuid, credit }) => {
+module.exports.creditAccount = (state, { uuid, credit }) => {
   const key = state.accounts.findKey(findByUUID(uuid))
   if (! key) {
     return state.set('lastActionResult', new ActionResult({ error: noAccountFoundWithUUID(uuid) }))

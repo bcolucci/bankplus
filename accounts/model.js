@@ -1,7 +1,7 @@
 const { Record } = require('typed-immutable')
 
-exports = Record({
-  uuid: String,
+module.exports = Record({
+  uuid: Object,
   balance: Number,
-  clientUUID: String
+  clientUUID: Object
 })

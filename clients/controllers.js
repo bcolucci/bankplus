@@ -1,12 +1,12 @@
 
-exports.createClient = (state, { name, accountUUID }) => {
+module.exports.createClient = (state, { name, accountUUID }) => {
   //TODO
 }
 
-exports.createClient = (state, { name }) => {
+module.exports.createClient = (state, { name }) => {
   //TODO
 }
 
-exports.deleteClient = (state, { uuid }) => {
+module.exports.deleteClient = (state, { uuid }) => {
   //TODO
 }

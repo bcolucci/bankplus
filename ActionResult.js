@@ -1,6 +1,6 @@
 const { Record } = require('typed-immutable')
 
-exports = Record({
-  error: String,
+module.exports = Record({
+  error: Object,
   result: Object
 })
