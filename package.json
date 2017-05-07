@@ -4,13 +4,6 @@
   "description": "A mini POC",
   "author": "Brice Colucci <brice.colucci@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "ava": "^0.19.1",
-    "immutable": "^3.8.1",
-    "ramda": "^0.23.0",
-    "typed-immutable": "^0.1.2",
-    "uuid": "^3.0.1"
-  },
   "scripts": {
     "test": "ava"
   },
@@ -18,5 +11,13 @@
     "files": [
       "**/tests.js"
     ]
+  },
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "typed-immutable": "^0.1.2",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1"
   }
 }

@@ -1,7 +1,3 @@
-const { Record } = require('typed-immutable')
+const { Record, List } = require('typed-immutable')
 
-module.exports = Record({
-  uuid: Object,
-  name: String,
-  accountUUID: Object
-})
+module.exports = Record({ uuid: String, name: String, accountsUUID: List(String) })
