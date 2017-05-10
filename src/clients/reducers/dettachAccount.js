@@ -6,7 +6,7 @@ module.exports = (state, { uuid, accountUUID }) => {
     throw noClientFound(uuid)
   }
   const updater = client => {
-    const key = client.accountsUUID.findKey(accountUUID)
+    const key = client.accountsUUID.indexOf(accountUUID)
     if (key === undefined) {
       return client
     }
