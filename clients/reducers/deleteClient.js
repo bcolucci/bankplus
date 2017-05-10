@@ -1,13 +1,9 @@
-const Client = require('../model')
-const ActionResult = require('../../ActionResult')
+const noClientFound = require('../errors/noClientFound')
 
 module.exports = (state, { uuid }) => {
-  const key = state.clients.findKey((client) => client.uuid === uuid)
+  const key = state.findKey((client) => client.uuid === uuid)
   if (key === undefined) {
-    const error = `No client found with UUID '${uuid}'.`
-    return state.set('lastActionResult', new ActionResult({ error }))
+    throw noClientFound(uuid)
   }
-  return state
-    .set('clients', state.clients.delete(key))
-    .set('lastActionResult', new ActionResult({ result: { key, uuid } }))
+  return state.delete(key)
 }
