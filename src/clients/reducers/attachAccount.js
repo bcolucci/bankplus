@@ -1,6 +1,6 @@
 const noClientFound = require('../errors/noClientFound')
 
-module.exports = (state, { uuid, accountUUID }) => {
+module.exports = ({ uuid, accountUUID }, state) => {
   const key = state.findKey((client) => client.uuid === uuid)
   if (key === undefined) {
     throw noClientFound(uuid)

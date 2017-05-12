@@ -6,11 +6,11 @@ const creditAccount = require('./reducers/creditAccount')
 module.exports = (action, state) => {
   switch (action.type) {
     case actions.CREATE_ACCOUNT:
-      return createAccount(state, action)
+      return createAccount(action, state)
     case actions.DELETE_ACCOUNT:
-      return deleteAccount(state, action)
+      return deleteAccount(action, state)
     case actions.CREDIT_ACCOUNT:
-      return creditAccount(state, action)
+      return creditAccount(action, state)
   }
   return state
 }

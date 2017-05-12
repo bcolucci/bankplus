@@ -1,6 +1,6 @@
 const noAccountFound = require('../errors/noAccountFound')
 
-module.exports = (state, { uuid, credit }) => {
+module.exports = ({ uuid, credit }, state) => {
   const key = state.findKey((account) => account.uuid === uuid)
   if (key === undefined) {
     throw noAccountFound(uuid)

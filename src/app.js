@@ -1,11 +1,18 @@
-
 const accounts = require('./accounts')
 const clients = require('./clients')
 const createAppState = require('./createAppState')
 
-const initialState = createAppState()
+const reducer = (action, state = createAppState()) => {
+  if (action === undefined) {
+    return state
+  }
+  if (accounts.actions.ACTIONS.includes(action.type)) {
+    return state.set('accounts', accounts.reducer(action, state.accounts))
+  }
+  if (clients.actions.ACTIONS.includes(action.type)) {
+    return state.set('clients', clients.reducer(action, state.clients))
+  }
+  return state
+}
 
-console.log(JSON.stringify(initialState, null, 2))
-console.log(accounts, clients)
-
-//TODO
+module.exports = { accounts, clients, reducer }

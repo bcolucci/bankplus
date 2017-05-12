@@ -11,25 +11,25 @@ const accountUUID = 'a-uuid'
 const UUIDGenerator = () => uuid1
 
 test('create client', t => {
-  const state = createClient(List(), { UUIDGenerator, name })
+  const state = createClient({ UUIDGenerator, name }, List())
   t.deepEqual(state.first().toJS(), { uuid: uuid1, name, accountsUUID: [] })
 })
 
 test('delete client', t => {
-  const state = createClient(List(), { UUIDGenerator, name })
-  const state2 = deleteClient(state, { uuid: uuid1 })
+  const state = createClient({ UUIDGenerator, name }, List())
+  const state2 = deleteClient({ uuid: uuid1 }, state)
   t.deepEqual(state2.toJS(), [])
 })
 
 test('attach account', t => {
-  const state = createClient(List(), { UUIDGenerator, name })
-  const state2 = attachAccount(state, { uuid: uuid1, accountUUID })
+  const state = createClient({ UUIDGenerator, name }, List())
+  const state2 = attachAccount({ uuid: uuid1, accountUUID }, state)
   t.deepEqual(state2.first().toJS(), { uuid: uuid1, name, accountsUUID: [ accountUUID ] })
 })
 
 test('dettach account', t => {
-  const state = createClient(List(), { UUIDGenerator, name })
-  const state2 = attachAccount(state, { uuid: uuid1, accountUUID })
-  const state3 = dettachAccount(state2, { uuid: uuid1, accountUUID })
+  const state = createClient({ UUIDGenerator, name }, List())
+  const state2 = attachAccount({ uuid: uuid1, accountUUID }, state)
+  const state3 = dettachAccount({ uuid: uuid1, accountUUID }, state2)
   t.deepEqual(state3.first().toJS(), { uuid: uuid1, name, accountsUUID: [] })
 })

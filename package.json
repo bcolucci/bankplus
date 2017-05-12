@@ -9,11 +9,12 @@
   },
   "ava": {
     "files": [
-      "**/tests.js"
+      "src/**/tests.js"
     ]
   },
   "dependencies": {
     "immutable": "^3.8.1",
+    "redux": "^3.6.0",
     "typed-immutable": "^0.1.2",
     "uuid": "^3.0.1"
   },
