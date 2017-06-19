@@ -1,5 +1,6 @@
+const uuid = require('uuid')
 const Account = require('../model')
 
-module.exports = ({ UUIDGenerator, clientUUID }, state) => {
-  return state.push(new Account({ uuid: UUIDGenerator(), balance: 0, clientUUID }))
+module.exports = ({ clientUUID }, state) => {
+  return state.push(new Account({ uuid: uuid.v1(), balance: 0, clientUUID }))
 }

@@ -4,6 +4,10 @@ const deleteAccount = require('./reducers/deleteAccount')
 const creditAccount = require('./reducers/creditAccount')
 
 module.exports = (action, state) => {
+  if (action === undefined) {
+    return state
+  }
+  console.log('account', action)
   switch (action.type) {
     case actions.CREATE_ACCOUNT:
       return createAccount(action, state)

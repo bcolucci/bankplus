@@ -3,7 +3,8 @@ const clients = require('./clients')
 const createAppState = require('./createAppState')
 
 const reducer = (action, state = createAppState()) => {
-  if (action === undefined) {
+  console.log('app reducer', action)
+  if (action === undefined || action.type.substr(0, 2) === '@@') {
     return state
   }
   if (accounts.actions.ACTIONS.includes(action.type)) {
